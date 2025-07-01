@@ -1,1 +1,0 @@
-# apoia-dev-next.js
