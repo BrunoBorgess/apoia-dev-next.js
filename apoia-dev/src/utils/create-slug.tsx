@@ -5,8 +5,6 @@ export function createSlug(username: string): string {
         .replace(/[^a-zA-Z0-9\s-]/g, '') // Remove caracteres especiais (corretamente agora)
         .replace(/\s+/g, '-') // Substitui espaços por hifens
         .replace(/-+/g, '-') // Remove hifens duplicados
-        .toLowerCase()
-        .trim();
-}
 
+}
 
