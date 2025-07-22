@@ -4,6 +4,7 @@ import { ChangeEvent, useRef, useState } from "react"
 import { debounce } from 'lodash'
 import { changeName } from "../_actions/change-name"
 import { toast } from "sonner"
+import { changeDescription } from "../_actions/change-bio"
 
 
 export function Description({ initialDescription }: { initialDescription: string }){
@@ -21,21 +22,20 @@ export function Description({ initialDescription }: { initialDescription: string
 
             if(currentDescription !== description){
                 try{
-                   // const response = await changeName({name: currentDescription})
+                    const response = await changeDescription({description: currentDescription})
 
                     if(response.error){
-                        console.log(response.error);
                         toast.error(response.error)
                         setDescription(currentDescription);
                         return;
                     }
 
-                    toast.success("Nome alterado com sucesso!")
+                    toast.success("Sua Bio foi alterada com sucesso!")
 
 
                 }catch(err){
                     console.log(err);
-                    setDescription(currentDescription)
+                    setDescription(currentDescription);
                 }
             }
 
@@ -54,7 +54,7 @@ export function Description({ initialDescription }: { initialDescription: string
 
     return(
         <textarea
-            className="text-base  bg-gray-50 border-gray-100 rounded--md outline-none p-2 w-full max-w-2xl h-40"
+            className="text-base  bg-gray-50 border-gray-100 rounded--md outline-none p-2 w-full max-w-2xl h-40 resize-none text-center"
             value={description}
             onChange={handleChange}
         />
