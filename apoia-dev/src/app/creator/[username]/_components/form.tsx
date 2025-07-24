@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
+import { Label } from "@radix-ui/react-label";
 
 const formSchema = z.object({
     name: z.string().min(1, "O nome é obrigatório"),
@@ -48,7 +51,55 @@ export function FormDonate(){
                             placeholder="Digite seu nome..." 
                             {...field}
                             className="bg-white"
+
                             />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Mensagem</FormLabel>
+                        <FormControl>
+                            <Textarea
+                            placeholder="Digite sua mensagem..." 
+                            {...field}
+                            className="bg-white h-36 resize-none"
+
+                            />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Valor da doação</FormLabel>
+                        <FormControl>
+                            <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex items-center gap-3"
+                            >
+                                {["15", "25", "35"].map((value) => (
+                                    <div key={value} className="flex items-center gap-1">
+                                        <RadioGroupItem value={value} id={value} />
+                                        <Label htmlFor={value}>R$ {value}</Label>
+                                        <h1 className="flex items-center">
+                                            the first colection projecc
+                                        </h1>
+                                    </div>
+                                ))}
+                            </RadioGroup>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
